@@ -1,0 +1,194 @@
+
+@import "../../../theme.scss";
+$primary: map-get($baustellenverwaltung-frontend-theme, primary);
+
+:host {
+  height: 100% !important;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navbar_container {
+  min-width: 60px;
+  height: 100%;
+  overflow: hidden;
+}
+.ereignis-text{
+  font-size: 0.9rem;
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.ereignis-card {
+  margin-left: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-container:not(:first-child):before {
+  top: -37px;
+  left: 20px;
+  width: 1px;
+  height: 20px;
+  content: " ";
+  position: relative;
+  background-color: gray;
+}
+.activity-headline {
+  font-size: 1.5rem;
+}
+
+.ereignis-timestamp {
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+}
+
+.round-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  font-size: 1.25rem;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  justify-content: center;
+  color: white;
+  box-shadow: 0px 0px 2px #888;
+  background-color: mat-color($primary);
+}
+
+
+/* --- --- Cards --- --- */
+#dashboard-headline {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+.dashboard-card {
+  height: 100px;
+  display: flex;
+  margin: 8px;
+  width: calc(25% - 44px);
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboard-card:first-child{
+  margin-left: unset
+}
+.dashboard-card:last-child{
+  margin-right: unset
+}
+.dashboard-card-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  overflow: hidden;
+}
+.info-value {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: mat-color($primary);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.info-titel {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.info-icon {
+    font-size: 42px;
+    height: 42px;
+    width: 42px;
+    color: mat-color($primary);
+}
+.colored-bottom {
+  height: 32px;
+  margin: 0 -16px -16px -16px !important;
+  border-radius: 0px 0px 4px 4px;
+  background-color: mat-color($primary);
+}
+.kacheln{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 960px) {
+  .dashboard-card {
+    width: calc(50% - 44px);
+  }
+  .dashboard-card:nth-child(odd){
+    margin: 16px 8px 0 0;
+  }
+
+  .dashboard-card:nth-child(even){
+    margin: 16px 0 0 8px;
+  }
+}
+
+// Phone
+@media (max-width: 600px) {
+  .dashboard-card{
+    height: 120px;
+  }
+  .colored-bottom{
+    height: 24px;
+  }
+  .info-icon {
+    font-size: 28px;
+    height: 28px;
+    width: 28px;
+  }
+  .ereignis-timestamp{
+    text-align: center;
+  }
+  .dashboard-card-content {
+    display: flex;
+    align-items: center;
+    flex-grow: unset;
+    margin-bottom: 0;
+}
+.dashboard-card-content{
+  flex-grow: unset;
+  margin-bottom: 0;
+  margin-top:0;
+}
+.dashboard-smartphone-tile-container{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.info-titel {
+  display: block;
+  width: 100%;
+  white-space: pre-line;
+}
+}

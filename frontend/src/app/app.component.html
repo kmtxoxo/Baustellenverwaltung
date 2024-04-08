@@ -1,0 +1,39 @@
+<div
+  *ngIf="(loginState$ | async) === true && loading === false"
+  class="app-container"
+>
+  <mat-sidenav-container autosize class="sidenav-container">
+    <mat-sidenav
+      #leftSidenav
+      mode="{{ currentLayout.layout !== 'phone' ? 'side' : 'over' }}"
+      opened="{{ currentLayout.layout !== 'phone' }}"
+    >
+      <app-navbar [sidenav]="leftSidenav"></app-navbar>
+    </mat-sidenav>
+    <mat-sidenav-content
+      [@onMainContentChange]="
+        currentLayout.layout !== 'phone'
+          ? onSideNavChange
+            ? 'open'
+            : 'close'
+          : 'hide'
+      "
+    >
+      <div class="main_content">
+        <app-header [sidenav]="leftSidenav"></app-header>
+        <div class="inner-main-content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<div
+  style="height: 100%"
+  *ngIf="(loginState$ | async) === false && loading === false"
+>
+  <app-login></app-login>
+</div>
+<div class="main-spinner-container" *ngIf="loading === true">
+  <mat-spinner></mat-spinner>
+</div>

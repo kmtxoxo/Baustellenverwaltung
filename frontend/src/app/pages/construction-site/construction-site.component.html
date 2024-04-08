@@ -1,0 +1,120 @@
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="error-container" *ngIf="!loading && loadingFailed">{{ 'etc.loading_error' | translate }}</div>
+<div class="flex-container" *ngIf="!loading && !loadingFailed">
+  <div class="table-settings">
+    <div>
+      <button
+        (click)="applyFilter('')"
+        [class.mat-raised-button]="filter === ''"
+        [ngClass]="{ 'color-primary': filter === '' }"
+        mat-button
+      >
+        {{ "construction.status.all" | translate }}
+      </button>
+      <button
+        (click)="applyFilter('open')"
+        [class.mat-raised-button]="filter === 'open'"
+        [ngClass]="{ 'color-primary': filter === 'open' }"
+        mat-button
+      >
+        {{ "construction.status.open" | translate }}
+      </button>
+      <button
+        (click)="applyFilter('completed')"
+        [class.mat-raised-button]="filter === 'completed'"
+        [ngClass]="{ 'color-primary': filter === 'completed' }"
+        mat-button
+      >
+        {{ "construction.status.completed" | translate }}
+      </button>
+    </div>
+    <div *ngIf="(permissions | async)?.permissions.constructionSite.write" class="square-add-construction-button">
+      <button (click)="addBaustelle()" mat-raised-button color="primary">
+        <mat-icon>add</mat-icon
+        >{{ "construction.dialog.add_construction" | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="table-container">
+    <table mat-table matSort  [dataSource]="dataSource">
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td
+          mat-cell
+          [ngClass]="{ 'green-border': element.status === 'completed' }"
+          *matCellDef="let element; let i = index"
+        >
+          {{ i + 1 }}
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-sort-header="name" mat-header-cell *matHeaderCellDef>
+          {{ "construction.table.name" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-sort-header="status" mat-header-cell *matHeaderCellDef>
+          {{ "construction.table.status" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.status === "completed"
+              ? ("construction.status.completed" | translate)
+              : ("construction.status.open" | translate)
+          }}
+        </td>
+      </ng-container>
+
+      <!-- Last_Update Column -->
+      <ng-container matColumnDef="modifiedAt">
+        <th mat-sort-header="modifiedAt" mat-header-cell *matHeaderCellDef>
+          {{ "construction.table.last_changes" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.modifiedAt | date: "medium" }}
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "construction.table.delete" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" 
+            [disabled]="!(permissions | async)?.permissions.constructionSite.write"
+            (click)="deleteConstructionSite(element.id); $event.stopPropagation()"
+            aria-label="delete Construction Site icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [routerLink]="row.id"
+        class="clickable"
+      ></tr>
+    </table>
+
+    <div style="flex-grow: 1; background-color: white">
+      <div class="no-content-container" *ngIf="!loading && !loadingFailed && constructionSites?.length == 0">
+        {{ "construction.no_construction_sites" | translate }}
+      </div>
+    </div>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>

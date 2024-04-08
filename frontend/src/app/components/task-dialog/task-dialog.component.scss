@@ -1,0 +1,30 @@
+.time-form-container {
+    display: flex;
+}
+.time-form-container > mat-form-field:nth-child(odd){
+    margin-right: 16px;
+}
+mat-form-field{
+    display: block;
+    width: 100%;
+}
+.slider-container{
+  margin-bottom: 16px;
+}
+mat-slider {
+    width: 100%;
+  }
+  
+  .labels {
+    width: 100%;
+  }
+  .labels > span {
+    width: 33%;
+    display: inline-block;
+  }
+  .labels > span:nth-child(2) {
+    text-align: center;
+  }
+  .labels > span:nth-child(3) {
+    text-align: right;
+  }

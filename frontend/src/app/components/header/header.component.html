@@ -1,0 +1,22 @@
+<div class="header">
+    <div class="left-container spacer">
+      <mat-icon (click)="toggleSidenav()" *ngIf="currentLayout.layout === 'phone'  || sideNavState">menu</mat-icon>
+      <span class="route" *ngIf="currentRoute && currentLayout.layout !== 'phone' && !sideNavState">{{ currentRoute | translate}}</span>
+      <!--<mat-icon *ngIf="!(offlineStatus$ | async)" style="color:red">signal_wifi_off</mat-icon> <span *ngIf="!(offlineStatus$ | async)">{{ 'etc.no_connection' | translate}}</span>-->
+    </div>
+    <img  routerLink="/notifications"  id="header-logo" *ngIf="currentLayout.layout !== 'phone'" src="assets/logo_header.png" />
+    <div class="right-container">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+        <span>{{ profile?.name }}</span>
+      </button>
+  
+      <!--<mat-icon matBadge="4" matBadgeColor="primary">notifications</mat-icon>-->
+    </div>
+  </div>
+  
+  <mat-menu #menu="matMenu">
+    <button routerLink="/settings"  mat-menu-item> {{ 'routes.settings' | translate}}</button>
+    <button (click)="logout()" mat-menu-item>{{ 'etc.logout' | translate}}</button>
+  </mat-menu>
+  

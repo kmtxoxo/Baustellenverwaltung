@@ -1,0 +1,24 @@
+<div class="material-container">
+  <mat-list role="list">
+    <mat-list-item
+      class="clickable"
+      (click)="addMaterial(materialItem)"
+      *ngFor="let materialItem of materials"
+      role="listitem"
+      >{{ materialItem.amount + "x" }} {{ materialItem.name }}
+      {{ materialItem.unit }}</mat-list-item
+    >
+  </mat-list>
+</div>
+<div *ngIf="!loading && !loadingFailed && (permissions | async)?.permissions.material.write" class="add-button-container">
+  <button mat-fab color="primary" (click)="addMaterial()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div class="error-container" *ngIf="!loading && loadingFailed">{{ 'etc.loading_error' | translate }}</div>
+<div class="no-content-container" *ngIf="!loading && !loadingFailed && materials?.length == 0">
+  {{ "material.no_material" | translate }}
+</div>
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>

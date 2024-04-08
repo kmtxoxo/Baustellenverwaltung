@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+  }
+  
+  .table-settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+  
+  :host, .flex-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  
+  // Phone
+  @media (max-width: 600px) {
+    th.mat-header-cell:last-of-type{
+      width: 33%;
+    }
+  }

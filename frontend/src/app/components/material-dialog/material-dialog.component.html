@@ -1,0 +1,101 @@
+<h1 mat-dialog-title>
+    {{
+      editMaterial
+        ? ("material.edit_material" | translate)
+        : ("material.add_material" | translate)
+    }}
+  </h1>
+  <div mat-dialog-content>
+    <form [formGroup]="form">
+      <div class="material-row">
+        <mat-form-field class="name">
+          <mat-label>{{ "material.name" | translate }}</mat-label>
+          <input
+            maxlength="40"
+            type="text"
+            matInput
+            required
+            formControlName="name"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredMaterialOptions"
+              [value]="option"
+            >
+              <div class="row">
+                <span>{{ option }}</span>
+                <mat-icon
+                  class="remove-icon"
+                  (click)="removeMaterialOption(option); $event.stopPropagation()"
+                  >close</mat-icon
+                >
+              </div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+  
+        <mat-form-field class="unit">
+          <mat-label>{{ "material.unit" | translate }}</mat-label>
+          <input
+            maxlength="30"
+            type="text"
+            matInput
+            formControlName="unit"
+            [matAutocomplete]="auto2"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto2="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredOptions"
+              [value]="option"
+            >
+              <div class="row">
+                <span>{{ option }}</span>
+                <mat-icon
+                  class="remove-icon"
+                  (click)="removeUnitOption(option); $event.stopPropagation()"
+                  >close</mat-icon
+                >
+              </div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+  
+      <mat-form-field>
+        <mat-label>{{ "material.amount" | translate }}</mat-label>
+        <input formControlName="amount" required matInput />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions style="display: flex; justify-content: flex-end;">
+    <div>
+      <button *ngIf="editMaterial" mat-button (click)="onDeleteClicked()">
+        {{ "etc.form_actions.delete" | translate }}
+      </button>
+    </div>
+    <div>
+      <button mat-button (click)="onCancelClicked()">
+        {{ "etc.form_actions.cancel" | translate }}
+      </button>
+      <button
+        *ngIf="!editMaterial"
+        [disabled]="!form.valid"
+        mat-raised-button
+        color="primary"
+        (click)="onCreateClicked()"
+      >
+        {{ "etc.form_actions.create" | translate }}
+      </button>
+      <button
+        *ngIf="editMaterial"
+        [disabled]="!form.valid"
+        mat-raised-button
+        color="primary"
+        (click)="onSaveChangeClicked()"
+      >
+        {{ "etc.form_actions.save" | translate }}
+      </button>
+    </div>
+  </div>
+  

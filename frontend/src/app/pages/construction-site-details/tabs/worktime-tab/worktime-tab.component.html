@@ -1,0 +1,48 @@
+<mat-card
+  (click)="addWorktime(worktime)"
+  *ngFor="let worktime of worktimes"
+  class="time-item clickable"
+>
+  <div class="time-info-container">
+    <mat-icon class="time-icon">access_time</mat-icon>
+    <div class="time-info">
+      <span class="time-timestamp">{{
+        worktime.start | date: "dd.MM.yyyy"
+      }}</span>
+      <span
+        *ngIf="
+          (layout$ | async).layout !== 'phone' &&
+          (layout$ | async).layout !== 'phone-landscape'
+        "
+        class="time-from-to"
+      >
+        {{ worktime.start | date: "HH:mm" }} -
+        {{ worktime.end | date: "HH:mm" }} (
+        {{ worktime.hours > 0 ? worktime.hours + " Std." : "" }}
+        {{ worktime.minutes > 0 ? worktime.minutes + " min." : "" }} )</span
+      >
+      <span
+        *ngIf="
+          (layout$ | async).layout === 'phone' ||
+          (layout$ | async).layout === 'phone-landscape'
+        "
+      >
+        {{ worktime.start | date: "HH:mm" }} -
+        {{ worktime.end | date: "HH:mm" }}
+      </span>
+    </div>
+  </div>
+  <span class="user">{{ worktime.createdBy.user }}</span>
+</mat-card>
+<div class="error-container" *ngIf="!loading && loadingFailed">{{ 'etc.loading_error' | translate }}</div>
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="no-content-container" *ngIf="!loading && !loadingFailed && worktimes?.length == 0">
+  {{ "work_hours.no_work_hours" | translate }}
+</div>
+<div *ngIf="!loading && !loadingFailed && (permissions | async)?.permissions.worktime.write" class="add-button-container">
+  <button mat-fab color="primary" (click)="addWorktime()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

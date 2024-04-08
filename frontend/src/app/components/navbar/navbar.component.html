@@ -1,0 +1,56 @@
+<div
+  class="navbar_container"
+  [@onSideNavChange]="sideNavState ? 'open' : 'close'"
+>
+  <div class="navbar-item-container" fxLayout="column" fxLayoutGap="10px">
+    <div>
+      <mat-nav-list>
+        <a
+          [ngClass]="{
+            'sidenav-logo-container':
+              (layout$ | async).layout === 'phone' || sideNavState
+          }"
+          (click)="toggleSidenav()"
+          mat-list-item
+        >
+          <mat-icon
+            *ngIf="(layout$ | async).layout !== 'phone' && !sideNavState"
+            style="padding-right: 5px;"
+            >menu</mat-icon
+          >
+        </a>
+        <a (click)="closeSidenav()" routerLinkActive="active" routerLink="/notifications" mat-list-item>
+          <mat-icon style="padding-right: 5px;">home</mat-icon>
+          <span [@animateText]="linkText ? 'show' : 'hide'"
+            >{{ 'routes.notifications' | translate }}</span
+          >
+        </a>
+
+        <a (click)="closeSidenav()" routerLinkActive="active" routerLink="/constructionSites" mat-list-item>
+          <mat-icon style="padding-right: 5px;">build</mat-icon>
+          <span [@animateText]="linkText ? 'show' : 'hide'">{{ 'routes.construction' | translate }}</span>
+        </a>
+
+        <a (click)="closeSidenav()" routerLinkActive="active" routerLink="/tasks" mat-list-item>
+          <mat-icon style="padding-right: 5px;">check_box_outlined</mat-icon>
+          <span [@animateText]="linkText ? 'show' : 'hide'">{{ 'routes.tasks' | translate }}</span>
+        </a>
+
+
+        <a *ngIf="(permissions | async)?.permissions.users.write" (click)="closeSidenav()" routerLinkActive="active" routerLink="/users" mat-list-item>
+          <mat-icon style="padding-right: 5px;">people</mat-icon>
+          <span [@animateText]="linkText ? 'show' : 'hide'">{{ 'routes.employee' | translate}}</span>
+        </a>
+      </mat-nav-list>
+    </div>
+
+    <div style="padding-bottom: 8px;">
+      <mat-nav-list>
+        <a mat-list-item>
+          <mat-icon style="padding-right: 5px;">info</mat-icon>
+          <span [@animateText]="linkText ? 'show' : 'hide'">Version 0.9.8</span>
+        </a>
+      </mat-nav-list>
+    </div>
+  </div>
+</div>

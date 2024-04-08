@@ -1,0 +1,23 @@
+.add-button-container {
+  bottom: 64px;
+  left: 50%;
+  z-index: 100;
+  position: fixed;
+}
+:host {
+  position: absolute;
+  width: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 8px;
+}
+.mat-list-item {
+  border-bottom: 1px solid gainsboro;
+}
+
+.mat-list,
+.mat-list-base {
+  padding-top: 0;
+}

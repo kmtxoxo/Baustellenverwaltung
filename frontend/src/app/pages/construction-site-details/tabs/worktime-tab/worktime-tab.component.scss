@@ -1,0 +1,52 @@
+:host {
+    position: absolute;
+    width: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 8px;
+  }
+  .time-info-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .time-info {
+    display: flex;
+    flex-direction: column;
+    color: gray;
+    font-size: 0.9rem;
+  }
+  .time-icon {
+    margin-right: 8px;
+  }
+  
+  .time-from-to {
+    margin: 4px 0;
+  }
+  
+  .time-timestamp {
+    margin: 4px 0;
+  }
+  .time-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid gainsboro;
+  }
+  .time-item:first-child {
+    border-top: unset;
+  }
+  
+  .add-button-container {
+    bottom: 64px;
+    left: 50%;
+    z-index: 100;
+    position: fixed;
+  }
+  
+  .user{
+    font-size: 0.95rem;
+  }
+  

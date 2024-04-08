@@ -1,0 +1,164 @@
+
+@import "../../../../../theme.scss";
+$warn: map-get($baustellenverwaltung-frontend-theme, warn);
+
+.detail-card {
+  max-width: 500px;
+  margin: 4px;
+  width: 100%;
+  min-width: 300px;
+  flex: 1 1 380px;
+}
+.options-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 4px;
+  min-width: 280px;
+  flex: 1 1 280px;
+}
+/** No CSS for this example */
+.worker-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 4px;
+  min-width: 250px;
+  flex: 100% 1 250px;
+  max-height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.worker-container{
+  overflow-y: auto;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 4px;
+}
+.flex-container{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.invite-container{
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  :first-child{
+    flex-grow: 1;
+    margin-right: 3.5px;
+  }
+}
+#add-worker-icon:hover{
+  color:green;
+}
+
+.worker-item{
+  font-size: 1rem;
+  padding: 8px 0 8px 0;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.worker-item:last-child{
+  border-bottom: unset;
+}
+.remove-worker-icon{
+  color: gray;
+}
+.remove-worker-icon:hover{
+  color: mat-color($warn);
+}
+.detail-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-flow: wrap;
+}
+.detail-card 
+th,
+td {
+  padding: 16px 0;
+}
+
+.options-card td {
+  padding: 8px 0;
+}
+th {
+  text-align: left;
+}
+td:nth-child(odd) {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+td:nth-child(even) {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: gray;
+}
+
+.mat-card-header-titel {
+  font-size: 1.3rem;
+}
+.mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.info-text {
+  display: block;
+  color: gray;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+.option-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  align-items: flex-start;
+}
+.option-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.delete-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.delete-buttton {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.slider {
+  margin-top: 8px;
+}
+#download-icon {
+  margin-right: 4px;
+}
+
+
+
+// Phone
+@media (max-width: 600px) {
+  td
+  {
+   max-width: 0;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+  }
+  td:first-child {width: 30%;}
+  td:nth-child(2) {width: 70%;}
+
+  .options-card,.detail-card,.worker-card{
+    min-width: unset;
+  }
+}

@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>{{editMitarbeiter?('employee.edit_employee' | translate):('employee.add_employee' | translate)}}</h1>
+<div mat-dialog-content>
+  <form *ngIf="form" [formGroup]="form">
+  <mat-form-field>
+    <mat-label>{{'employee.table.name' | translate}}</mat-label>
+    <input [readonly]="readOnly" maxlength="40" formControlName="name" required matInput>
+  </mat-form-field>
+
+  <div class="role-container">
+  <mat-form-field>
+    <mat-label>{{'employee.table.role' | translate}}</mat-label>
+    <mat-select formControlName="role" [value]="form.value.role">
+      <mat-option *ngFor="let permission of permissions" [value]="permission.name">
+        {{'employee.roles.'+permission.name | translate}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> <mat-icon matTooltip="{{'employee.role_description' | translate }}"
+  matTooltipClass="tooltip-container" class="info-icon">info</mat-icon>
+</div>
+
+  <mat-form-field>
+    <mat-label>{{'employee.table.email' | translate}}</mat-label>
+    <input  [readonly]="readOnly" maxlength="50" formControlName="email" matInput>
+  </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions style="display: flex;justify-content: space-between;">
+  <div> <button *ngIf="editMitarbeiter && (this.ownPermissions | async)?.permissions.users.write" mat-button (click)="onDeleteClicked()">{{'etc.form_actions.delete' | translate}}</button></div>
+  <div>
+  <button mat-button (click)="onCancelClicked()">{{'etc.form_actions.cancel' | translate}}</button>
+  <button *ngIf="!editMitarbeiter" [disabled]="!form?.valid" mat-raised-button color="primary" (click)="onCreateClicked()">{{'etc.form_actions.create' | translate}}</button>
+  <button *ngIf="editMitarbeiter && (this.ownPermissions | async)?.id != note.data?.id && (this.ownPermissions | async)?.permissions.users.write" [disabled]="!form?.valid" mat-raised-button color="primary" (click)="onSaveChangeClicked()">{{'etc.form_actions.save' | translate}}</button>
+</div>
+</div>

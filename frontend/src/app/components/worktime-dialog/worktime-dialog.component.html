@@ -1,0 +1,86 @@
+<h1 mat-dialog-title>
+    {{
+      editArbeitszeit
+        ? ("work_hours.edit_work_hours" | translate)
+        : ("work_hours.add_work_hours" | translate)
+    }}
+  </h1>
+  <div *ngIf="form">
+    <div mat-dialog-content>
+      <form [formGroup]="form">
+        <mat-form-field>
+            <mat-label>{{ "work_hours.name" | translate }}</mat-label>
+            <input disabled matInput  [value]="profile.name"/>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>{{'work_hours.accomplished_work' | translate}}...</mat-label>
+          <textarea  #message cdkTextareaAutosize
+          cdkAutosizeMinRows="5"
+          cdkAutosizeMaxRows="10" formControlName="text" matInput  minlength="3" maxlength="1200" required></textarea>
+          <mat-hint align="end">{{message.value.length}} / 1200</mat-hint>
+        </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>{{ "work_hours.date" | translate }}</mat-label>
+            <input
+              matInput
+              (click)="picker1.open()"
+              [matDatepicker]="picker1"
+              formControlName="startdatum"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+         
+  
+        <div class="time-form-container">
+          <mat-form-field>
+            <mat-label>{{ "work_hours.begin" | translate }}</mat-label>
+            <input type="time" matInput formControlName="startuhrzeit" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{ "work_hours.end" | translate }}</mat-label>
+            <input type="time" matInput formControlName="enduhrzeit" />
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div
+      mat-dialog-actions
+      style="display: flex; justify-content: space-between;"
+    >
+      <div>
+        <button *ngIf="editArbeitszeit" mat-button (click)="onDeleteClicked()">
+          {{ "etc.form_actions.delete" | translate }}
+        </button>
+      </div>
+      <div>
+        <button mat-button (click)="onCancelClicked()">
+          {{ "etc.form_actions.cancel" | translate }}
+        </button>
+        <button
+          *ngIf="!editArbeitszeit"
+          [disabled]="!form.valid"
+          mat-raised-button
+          color="primary"
+          (click)="onCreateClicked()"
+        >
+          {{ "etc.form_actions.create" | translate }}
+        </button>
+        <button
+          *ngIf="editArbeitszeit"
+          [disabled]="!form.valid"
+          mat-raised-button
+          color="primary"
+          (click)="onSaveChangeClicked()"
+        >
+          {{ "etc.form_actions.save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,266 @@
+{
+    "routes": {
+        "notifications": "Latest Events",
+        "construction": "Construction Sites",
+        "tasks": "My Tasks",
+        "notes": "Notes",
+        "employee": "Employee",
+        "settings": "User settings"
+    },
+    "recently": {
+        "overview": "Overview",
+        "activity": "Activity",
+        "open_projects": "Open Projects",
+        "completed_projects": "Completed Projects",
+        "work_hours": "Worked in the last 7 days",
+        "open_tasks": "Open Tasks",
+        "no_activity": "No new activities present"
+    },
+    "construction": {
+        "status": {
+            "open": "Open",
+            "all": "All",
+            "completed": "Completed"
+        },
+        "no_construction_sites": "No Construction Sites available",
+        "add_construction": "Add Construction Site",
+        "table": {
+            "name": "Name",
+            "status": "Status",
+            "last_changes": "Last Changes",
+            "delete": "Delete"
+        },
+        "dialog": {
+            "add_construction": "Add Construction Site",
+            "edit_construction": "Edit Construction Site",
+            "delete_construction": "Delete Construction Site",
+            "construction_site_name": "Construction site name",
+            "contact": "Contact information",
+            "customername": "Customer name",
+            "email": "E-Mail",
+            "adress": "Adress",
+            "city": "City",
+            "zip": "Zip",
+            "phone_number": "Phone number"
+        },
+        "tabs": {
+            "gallery": "Gallery",
+            "material": "Material",
+            "working_hours": "Working hours",
+            "tasks": "tasks",
+            "details": "Details",
+            "notes": "Notes"
+        },
+        "open_tasks": "open Tasks",
+        "completed_tasks":"Completed Tasks",
+        "worktime": "Working hours",
+        "workers": "Employee",
+        "add_worker": "Add employees",
+        "construction_site_information": "Construction Site Information",
+        "more_options": "More Options",
+        "export_construction_site": "Export Construction Site",
+        "delete_description": "Only delete this construction site if you have a backup-copy or if you no longer need the informations. Deleted construction sites cannot be restored"
+    },
+    "tasks": {
+        "no_tasks": "No tasks available",
+        "text": "Description",
+        "all_tasks": "All",
+        "my_tasks": "My Tasks",
+        "status": {
+            "all":"All",
+            "status": "Status",
+            "completed":"Completed",
+            "open":"Open",
+            "in_progress": "In Progress"
+        },
+        "dialog":{
+            "add_task": "Add Task",
+            "edit_task": "Edit Task"
+        },
+        "title": "Title",
+        "assign_to": "Assigne To",
+        "created_at": "Created At",
+        "assigned_to": "Assigned To",
+        "priority": "Priority",
+        "priorities":{
+            "low": "Low",
+            "normal": "Normal",
+            "high": "High"
+        }
+    },
+    "material": {
+        "name": "Name",
+        "amount": "Amount",
+        "unit": "Unit",
+        "add_material": "Add Material",
+        "edit_material": "Edit Material",
+        "remove_material": "Remove Material",
+        "no_material": "No materials added"
+    },
+    "notes": {
+        "add_note": "Add Note",
+        "edit_note": "Edit Note",
+        "no_notes": "No notes available",
+        "title": "Titel",
+        "message": "Message"
+    },
+    "employee": {
+        "add_employee": "Add Employee",
+        "edit_employee": "Edit Employee",
+        "table": {
+            "name": "Name",
+            "status": "Status",
+            "role": "Role",
+            "email": "E-Mail",
+            "address": "Address",
+            "phone_number": "Phone number",
+            "action": "Action"
+        },
+        "status": {
+            "active": "Active",
+            "invited": "Invited"
+        },
+        "roles": {
+            "admin": "Admin",
+            "employee": "Employee",
+            "teilnehmer": "Participant"
+        },
+        "role_description": "Employees can book time and edit their created Objects. Participants can only read"
+    },
+    "settings": {
+        "name": "Name",
+        "city":"City",
+        "zip":"Zip",
+        "phone": "Phone number",
+        "address":"Address",
+        "old_password": "Old Password",
+        "password_confirmation": "Confirm Password",
+        "new_password": "New Password",
+        "email": "E-Mail",
+        "language": "Language",
+        "change_password": "Change Password",
+        "update_profile": "Update Profile",
+        "update_password": "Update Password"
+    },
+    "work_hours": {
+        "name": "Name",
+        "begin": "Begin",
+        "end": "End",
+        "date": "Date",
+        "accomplished_work": "Accomplished Work",
+        "start_time": "Time",
+        "end_time": "Time",
+        "add_work_hours": "Book time",
+        "edit_work_hours": "Edit Work Hours",
+        "no_work_hours": "No working times available",
+        "worktime_export_headline": "Export Work hours",
+        "worktime_export_info": "Select the period of working hours to be exported."
+    },
+    "snackbar":{
+        "successfully_uploaded_image": "Image successfully uploaded",
+        "failed_to_uploade_image": "Image could not be uploaded!",
+        "successfully_added_construction": "construction site successfully added",
+        "failed_to_add_construction": "Construction site could not be added!",
+        "successfully_deleted_construction": "construction site successfully deleted",
+        "failed_to_delete_construction": "Construction site could not be deleted!",
+        "successfully_updated_construction": "Construction site successfully updated",
+        "failed_to_update_construction": "Construction site could not be updated!",
+        "successfully_added_worker_to_construction":"Employee successfully added to construction site",
+        "successfully_removed_worker_from_construction":"Employee successfully removed from construction site",
+        "failed_to_removed_worker_from_construction":"Employee could not be removed from construction site!",
+        "failed_to_add_worker_to_construction":"Employee could not be added to construction site!",
+        "successfully_added_time": "Successfully logged your Time",
+        "successfully_deleted_time": "Successfully deleted logged Time",
+        "failed_to_delete_time": "Failed to delete logged Time!",
+        "failed_to_add_time": "Failed to log Time",
+        "successfully_updated_time": "Time successfully updated",
+        "failed_to_update_time": "Time could not be updated!",
+        "successfully_added_task": "Task successfully created",
+        "successfully_updated_task": "Task successfully updated",
+        "failed_to_update_task": "Task could not be updated!",
+        "failed_to_add_task": "Task could not be created!",
+        "failed_to_delete_task":"Task could not be deleted!",
+        "successfully_deleted_task":"Task successfully deleted!",
+        "successfully_added_note": "Note successfully added",
+        "successfully_updated_note": "Note was updated",
+        "failed_to_update_note": "Note could not be updated!",
+        "successfully_deleted_note":"Note successfully deleted",
+        "failed_to_delete_note":"Note could not be deleted!",
+        "failed_to_add_note": "Note could not be added!",
+        "successfully_added_employee": "Employee successfully added",
+        "successfully_deleted_employee":"Employee successfully deleted",
+        "failed_to_delete_employee":"Could not delete Employee!",
+        "failed_to_add_employee": "Employee could not be added!",
+        "successfully_updated_employee": "Employee successfully updated",
+        "failed_to_updated_employee": "Employee could not be updated!",
+        "successfully_updated_userinfo": "User information updated",
+        "failed_to_update_userinfo": "User information could not be updated!",
+        "successfully_updated_password": "Password changed successfully",
+        "failed_to_update_password": "Password could not be changed!",
+        "successfully_created_account": "Account successfully created",
+        "failed_to_create_account": "Account could not be created",
+        "successfully_reset_account": "Email to reset your Account was sent",
+        "failed_to_reset_account": "User data could not be reset!",
+        "successfully_logged_out": "Successfully logged out",
+        "failed_to_logout": "Error logging out!",
+        "successfully_logged_in":"Successfully logged in",
+        "failed_to_login":"Failed to login! Wrong Password or Username",
+        "check_your_connection":"Check your internet connection or clear your cookies & cache!",
+        "successfully_added_material": "Successfully added Material",
+        "successfully_deleted_material": "Successfully deleted Material",
+        "failed_to_delete_material": "Failed to delete Material!",
+        "failed_to_add_material": "Failed to add Material",
+        "successfully_updated_material": "Successfully updated Material",
+        "failed_to_update_material": "Material could not be updated!",
+        "need_to_be_online": "You need to be online to execute this function",
+        "material-download-failed": "Material could not be downloaded!",
+        "worktime-download-failed": "Worktime could not be downloaded!"
+    },
+    "confirmation_dialog": {
+        "delete_constructionSite": {
+            "headline": "Delete Construction Site",
+            "text": "Do you really want to delete the Construction Site?"
+        }
+    },
+    "etc": {
+        "form_actions": {
+            "create": "Create",
+            "add": "Add",
+            "delete": "Delete",
+            "edit": "Edit",
+            "update": "Update",
+            "cancel": "Cancel",
+            "save": "Save",
+            "Yes": "Yes",
+            "download": "Download"
+        },
+        "languages": {
+            "de": "German",
+            "en": "English"
+        },
+        "from": "From",
+        "to": "To",
+        "download_options": "Download Options",
+        "go_back": "Go Back",
+        "not_found": "It seems that this page doesn't exist or has been removed.\nGo back to our site or contact us about the problem.",
+        "city":"City",
+        "zip":"Zip",
+        "phone": "Phone number",
+        "address":"Address",
+        "login": "Login",
+        "login_error": "Username or Password is wrong.",
+        "logout": "Logout",
+        "username": "Username",
+        "email": "E-Mail-Adress",
+        "password": "Password",
+        "password_forgotten": "I forgot my password",
+        "register": "Create Account",
+        "update_password":"Update Password",
+        "confirmation_password": "Confirm Password",
+        "reset_password":"Reset Password",
+        "stay_signed_in": "Stay Signed In",
+        "no_connection": "no internet connection!",
+        "loading_error": "An error has occurred during loading",
+        "no_images": "No images available"
+    }
+}

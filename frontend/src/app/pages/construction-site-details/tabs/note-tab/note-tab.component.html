@@ -1,0 +1,49 @@
+<div *ngIf="!loading && !loadingFailed" class="notizen-container">
+  <div>
+    <div
+      [ngClass]="{
+        'notizen-smartphone':
+          (layout$ | async).layout === 'phone' ||
+          (layout$ | async).layout === 'phone-landscape'
+      }"
+      class="notizen"
+    >
+      <mat-card
+        [ngClass]="{
+          'notiz-card-smartphone':
+            (layout$ | async).layout === 'phone' ||
+            (layout$ | async).layout === 'phone-landscape'
+        }"
+        (click)="addNote(notiz)"
+        *ngFor="let notiz of notes"
+        class="notiz-card clickable"
+      >
+        <mat-card-header>
+          <mat-card-title class="notiz-titel">{{ notiz.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+          <p class="notiz-content">
+            {{ notiz.text }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="notiz-date">
+          <span>{{ notiz.modifiedAt | date }}</span>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div *ngIf="!loading && !loadingFailed && (permissions | async)?.permissions.note.write" class="add-button-container">
+  <button mat-fab color="primary" (click)="addNote()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div class="error-container" *ngIf="!loading && loadingFailed">
+  {{ "etc.loading_error" | translate }}
+</div>
+<div class="no-content-container" *ngIf="!loading && !loadingFailed && notes?.length == 0">
+  {{ "notes.no_notes" | translate }}
+</div>
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>

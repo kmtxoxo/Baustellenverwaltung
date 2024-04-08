@@ -1,0 +1,29 @@
+<div *ngIf="!loading && !loadingFailed">
+  <img
+    *ngFor="let image of images"
+    (click)="openModal(image)"
+    [src]="image"
+    class="gallery-item"
+  />
+</div>
+<div  *ngIf="!loading && !loadingFailed && (permissions | async)?.permissions.imageUpload.write" class="add-button-container">
+  <button mat-fab color="primary" (click)="fileInput.click()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<input
+  hidden
+  (change)="onSelectFile($event)"
+  #fileInput
+  type="file"
+  accept="image/*"
+  multiple
+  id="file"
+/>
+<div class="error-container" *ngIf="!loading && loadingFailed">{{ 'etc.loading_error' | translate }}</div>
+<div class="no-content-container" *ngIf="!loading && !loadingFailed && images?.length == 0">
+  {{ "etc.no_images" | translate }}
+</div>
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>

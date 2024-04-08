@@ -1,0 +1,266 @@
+{
+    "routes": {
+        "notifications": "Letzten Ereignisse",
+        "construction": "Baustellen",
+        "tasks": "Meine Aufgaben",
+        "notes": "Notizen",
+        "employee": "Mitarbeiter",
+        "settings": "Profileinstellungen"
+    },
+    "recently": {
+        "overview": "Aktuelle Übersicht",
+        "activity": "Aktivität",
+        "open_projects": "Offene Aufträge",
+        "completed_projects": "Abgeschlossene Aufträge",
+        "work_hours": "Gearbeitet in den Letzen 7 Tagen",
+        "open_tasks": "Offene Aufgaben",
+        "no_activity": "Keine Aktivitäten vorhanden"
+    },
+    "construction": {
+        "status": {
+            "open": "Offen",
+            "all": "Alle",
+            "completed": "Abgeschlossen"
+        },
+        "no_construction_sites": "Keine Baustellen vorhanden",
+        "add_construction": "Baustelle hinzufügen",
+        "table": {
+            "name": "Name",
+            "status": "Status",
+            "last_changes": "Letzten Änderungen",
+            "delete": "Löschen"
+        },
+        "dialog": {
+            "add_construction": "Baustelle hinzufügen",
+            "edit_construction": "Baustelle bearbeiten",
+            "delete_construction": "Baustelle löschen",
+            "construction_site_name": "Baustellenname",
+            "contact": "Kontaktdetails",
+            "customername": "Kundenname",
+            "email": "E-Mail",
+            "adress": "Adresse",
+            "city": "Stadt",
+            "zip": "Postleitzahl",
+            "phone_number": "Telefonnummer"
+        },
+        "tabs": {
+            "gallery": "Gallerie",
+            "material": "Material",
+            "working_hours": "Arbeitszeiten",
+            "tasks": "Aufgaben",
+            "details": "Details",
+            "notes":"Notizen"
+        },
+        "open_tasks": "Offene Aufgaben",
+        "completed_tasks":"Abgeschlossene Aufgaben",
+        "worktime": "Arbeitszeit",
+        "workers": "Mitarbeiter",
+        "add_worker": "Mitarbeiter hinzufügen",
+        "construction_site_information": "Baustellen Informationen",
+        "more_options": "Weitere Optionen",
+        "export_construction_site": "Baustelle exportieren",
+        "delete_description": "Löschen Sie diese Baustelle nur, wenn Sie alle Daten vollständig bearbeitet haben und nicht mehr benötigen oder diese Exportiert haben. Gelöschte Baustellen können nicht wiederhergestellt werden"
+    },
+    "tasks": {
+        "no_tasks": "Keine Aufgaben vorhanden",
+        "all_tasks": "Alle",
+        "my_tasks": "Meine Aufgaben",
+        "text": "Beschreibung",
+        "status": {
+            "all": "Alle",
+            "status":"Status",
+            "completed":"Abgeschlossen",
+            "open":"Offen",
+            "in_progress": "In Bearbeitung"
+        },
+        "dialog":{
+            "add_task": "Aufgabe erstellen",
+            "edit_task": "Aufgabe bearbeiten"
+        },
+        "title": "Titel",
+        "assign_to": "Zuteilen zu",
+        "created_at": "Erstellt",
+        "assigned_to": "Zugeteilt zu",
+        "priority": "Priorität",
+        "priorities":{
+            "low": "Niedrig",
+            "normal": "Normal",
+            "high": "Hoch"
+        }
+    },
+    "material": {
+        "name": "Name",
+        "amount": "Anzahl",
+        "unit": "Einheit",
+        "add_material": "Material hinzufügen",
+        "edit_material": "Material bearbeiten",
+        "remove_material": "Material entfernen",
+        "no_material": "Kein Material eingetragen"
+    },
+    "notes": {
+        "add_note": "Notiz hinzufügen",
+        "edit_note": "Notiz bearbeiten",
+        "no_notes": "Keine Notizen vorhanden",
+        "title": "Titel",
+        "message": "Nachricht"
+    },
+    "employee": {
+        "add_employee": "Mitarbeiter hinzufügen",
+        "edit_employee": "Mitarbeiter bearbeiten",
+        "table": {
+            "name": "Name",
+            "status": "Status",
+            "role": "Rolle",
+            "email": "E-Mail",
+            "address": "Adresse",
+            "phone_number": "Telefonnummer",
+            "action": "Aktion"
+        },
+        "status": {
+            "active": "Aktiv",
+            "invited": "Eingeladen"
+        },
+        "roles": {
+            "admin": "Admin",
+            "employee": "Mitarbeiter",
+            "teilnehmer": "Teilnehmer"
+        },
+        "role_description": "Mitarbeiter können Zeiten eintragen und eigene Sachen Löschen/Bearbeiten\nTeilnehmer können nur Lesen"
+    },
+    "settings": {
+        "name": "Name",
+        "old_password": "Altes Passwort",
+        "password_confirmation": "Passwort Bestätigen",
+        "new_password": "Neues Passwort",
+        "email": "E-Mail",
+        "city":"Stadt",
+        "address":"Adresse",
+        "zip":"Postleitzahl",
+        "phone": "Telefonnummer",
+        "language": "Sprachen",
+        "change_password": "Passwort ändern",
+        "update_profile": "Profil aktualisieren",
+        "update_password": "Passwort aktualisieren"
+    },
+    "work_hours": {
+        "name": "Name",
+        "begin": "Beginn",
+        "end": "Ende",
+        "date": "Datum",
+        "accomplished_work": "Durchgeführte Arbeiten",
+        "start_time": "Uhrzeit",
+        "end_time": "Uhrzeit",
+        "add_work_hours": "Arbeitszeit eintragen",
+        "edit_work_hours": "Arbeitszeit bearbeiten",
+        "worktime_export_headline": "Arbeitszeiten exportieren",
+        "worktime_export_info": "Wählen Sie den Zeitraum der zu exportierenden Arbeitsstunden aus.",
+        "no_work_hours": "Keine Arbeitszeiten vorhanden"
+    },
+    "snackbar":{
+        "successfully_uploaded_image": "Bild erfolgreich hinzugefügt",
+        "failed_to_uploade_image": "Bild konnte nicht hochgeladen werden!",
+        "successfully_added_construction":"Baustelle erfolgreich hinzugefügt",
+        "failed_to_add_construction":"Baustelle konnte nicht hinzugefügt werden!",
+        "successfully_deleted_construction": "Baustelle erfolgreich gelöscht",
+        "failed_to_delete_construction": "Baustelle konnte nicht gelöscht werden!",
+        "successfully_updated_construction":"Baustelle erfolgreich aktualisiert",
+        "successfully_added_worker_to_construction":"Mitarbeiter erfolgreich zu Baustelle hinzugefügt",
+        "successfully_removed_worker_from_construction":"Mitarbeiter erfolgreich von Baustelle entfernt",
+        "failed_to_removed_worker_from_construction":"Mitarbeiter konnte nicht von Baustelle entfernt werden!",
+        "failed_to_add_worker_to_construction":"Mitarbeiter konnte nicht zu Baustelle hinzugefügt werden!",
+        "failed_to_update_construction":"Baustelle konnte nicht aktualisiert werden!",
+        "successfully_added_time":"Arbeitszeit erfolgreich eingetragen",
+        "failed_to_add_time":"Arbeitszeit konnte nicht eingetragen werden!",
+        "successfully_updated_time":"Arbeitszeit erfolgreich aktualisiert",
+        "failed_to_update_time":"Arbeitszeit konnte nicht aktualisiert!",
+        "successfully_deleted_time": "Arbeitszeit erfolgreich gelöscht",
+        "failed_to_delete_time": "Arbeitszeit konnte nicht gelöscht werden!",
+        "successfully_added_task":"Aufgabe erfolgreich erstellt",
+        "successfully_updated_task":"Aufgabe erfolgreich aktualisiert",
+        "failed_to_update_task":"Aufgabe konnte nicht aktualisiert werden!",
+        "failed_to_add_task":"Aufgabe konnte nicht erstellt werden!",
+        "failed_to_delete_task":"Aufgabe konnte nicht gelöscht werden!",
+        "successfully_deleted_task":"Aufgabe erfolgreich gelöscht!",
+        "successfully_added_note":"Notiz erfolgreich hinzugefügt",
+        "successfully_deleted_note":"Notiz erfolgreich gelöscht",
+        "failed_to_delete_note":"Notiz konnte nicht aktualisiert werden!",
+        "successfully_updated_note":"Notiz wurde aktualisiert",
+        "failed_to_update_note":"Notiz konnte nicht aktualisiert werden!",
+        "failed_to_add_note":"Notiz konnte nicht hinzugefügt werden!",
+        "successfully_added_employee":"Mitarbeiter erfolgreich hinzugefügt",
+        "successfully_deleted_employee":"Mitarbeiter erfolgreich gelöscht",
+        "failed_to_delete_employee":"Mitarbeiter konnte nicht gelöscht werden!",
+        "failed_to_add_employee":"Mitarbeiter konnte nicht hinzugefügt werden!",
+        "successfully_updated_employee":"Mitarbeiter erfolgreich aktualisiert",
+        "failed_to_updated_employee":"Mitarbeiter konnte nicht aktualisiert werden!",
+        "successfully_updated_userinfo":"Benutzerinformationen aktualisiert",
+        "failed_to_update_userinfo":"Benutzerinformationen konnten nicht aktualisiert werden!",
+        "successfully_updated_password":"Passwort erfolgreich geändert",
+        "failed_to_update_password":"Passwort konnte nicht geändert werden!",
+        "successfully_created_account":"Benutzerkonto erfolgreich erstellt",
+        "failed_to_create_account":"Benutzerkonto konnte nicht erstellt werden",
+        "successfully_reset_account":"E-Mail zum Zurücksetzen wurde gesendet",
+        "failed_to_reset_account":"Benutzerdaten konnten nicht zurückgesetzt werden!",
+        "successfully_logged_out":"Erfolgreich abgemeldet",
+        "failed_to_logout":"Fehler beim Abmelden!",
+        "check_your_connection":"Prüfen sie Ihre Internetverbindung oder leeren Sie ihre Cookies & Cache!",
+        "successfully_logged_in":"Erfolgreich angemeldet",
+        "failed_to_login":"Fehler beim Anmelden! Benutzername oder Passwort falsch",
+        "successfully_added_material": "Material erfolgreich hinzugefügt",
+        "successfully_deleted_material": "Material erfolgreich gelöscht",
+        "failed_to_delete_material": "Material konnte nicht gelöscht werden!",
+        "failed_to_add_material": "Material konnte nicht hinzugefügt werden!",
+        "successfully_updated_material": "Material erfolgreich aktualisiert",
+        "failed_to_update_material": "Material konnte nicht aktualisiert werden!",
+        "need_to_be_online": "Sie müssen eine Internetverbindung haben um diese Funktion auszuführen.",
+        "material-download-failed": "Material konnte nicht runtergeladen werden!",
+        "worktime-download-failed": "Arbeitszeiten konnte nicht runtergeladen werden!"
+    },
+    "confirmation_dialog": {
+        "delete_constructionSite": {
+            "headline": "Baustelle löschen",
+            "text": "Wollen Sie wirklich die Baustelle löschen?"
+        }
+    },
+    "etc": {
+        "form_actions": {
+            "create": "Erstellen",
+            "add": "Hinzufügen",
+            "delete": "Löschen",
+            "edit": "Bearbeiten",
+            "update": "Aktualisieren",
+            "cancel": "Abbrechen",
+            "save": "Speichern",
+            "yes": "Ja",
+            "download": "Download"
+        },
+        "languages": {
+            "de": "Deutsch",
+            "en": "Englisch"
+        },
+        "from": "Von",
+        "to": "Bis",
+        "download_options": "Download Auswahl",
+        "go_back": "Zurück zur Startseite",
+        "not_found": "Es scheint, dass diese Seite nicht existiert oder entfernt wurde. \n Gehen Sie zurück zu unserer Website oder kontaktieren Sie uns bezüglich des Problems.",
+        "city":"Stadt",
+        "address":"Adresse",
+        "zip":"Postleitzahl",
+        "phone": "Telefonnummer",
+        "login": "Anmelden",
+        "login_error": "Benutzername oder Passwort ist ungültig.",
+        "logout": "Abmelden",
+        "username": "Benutzername",
+        "email": "E-Mail-Adresse",
+        "password": "Passwort",
+        "register": "Account erstellen",
+        "password_forgotten": "Password vergessen?",
+        "update_password": "Passwort aktualisieren",
+        "confirmation_password": "Passwort bestätigen",
+        "reset_password": "Passwort zurücksetzen",
+        "stay_signed_in": "Angemeldet bleiben",
+        "no_connection": "Keine Internetverbindung!",
+        "loading_error": "Ein Fehler beim Laden ist aufgetreten",
+        "no_images": "Keine Bilder vorhanden"
+    }
+}

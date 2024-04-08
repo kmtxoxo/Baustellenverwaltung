@@ -1,0 +1,97 @@
+.notizen {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .notizen-container{
+    margin-top: 16px;
+  }
+  
+  .notizen-smartphone {
+    //justify-content: center;
+  }
+  
+  .button-container {
+    padding-bottom: 16px;
+    text-align: right;
+  }
+  
+  .notiz-titel {
+    color: grey;
+    margin-left: -16px;
+  }
+  .notiz-content {
+    color: gray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+  .notiz-date {
+    text-align: right;
+    border-top: 1px solid #e0e0e0;
+    color: gray;
+  }
+  .card-content{
+    flex-grow: 1;
+  }
+  .notiz-card {
+    margin: 4px;
+    width: calc(25% - 40px);
+    display: flex;
+    flex-direction: column;
+  }
+  .notiz-card-smartphone {
+    min-width: unset;
+  }
+  
+  .notiz-card::before,
+  .notiz-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+  
+  .notiz-card::before {
+    border-width: 1.44em;
+    border-right-color: #ccc;
+    border-top-color: #ccc;
+  }
+  
+  .notiz-card::after {
+    border-radius: 0.2em;
+    border-width: 1.35em;
+    border-right-color: #21325e;
+    border-top-color: #21325e;
+  }
+
+  .add-button-container {
+    bottom: 64px;
+    left: 50%;
+    z-index: 100;
+    position: fixed;
+  }
+  
+  // Small devices (landscape phones, 576px and up)
+  @media (max-width: 960px) {
+    .notiz-card {
+      width: calc(33% - 38px);
+    }
+  }
+  // Tablet
+  @media (max-width: 786px) {
+    .notiz-card {
+      width: calc(50% - 40px);
+    }
+  }
+  // Phone
+  @media (max-width: 600px) {
+    .notiz-card {
+      width: 100%;
+    }
+  }
+  

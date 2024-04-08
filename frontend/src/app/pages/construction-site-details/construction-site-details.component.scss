@@ -1,0 +1,26 @@
+:host {
+  box-sizing: border-box;
+  display: block;
+  height: 100%;
+}
+
+#wrapper {
+  padding: 16px;
+  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+#tab-group {
+  height: 100%;
+}
+#tab-group mat-tab-body {
+  flex-grow: 1 !important;
+}
+
+.tab-container {
+  height: 100%;
+  display: block;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-grow: 1;
+}

@@ -1,0 +1,16 @@
+mat-form-field{
+    display: block !important;
+    flex-grow: 1;
+}
+.info-icon{
+    margin-left: 16px;
+    color: #21325e;
+}
+.role-container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.tooltip-container{
+    white-space: pre-line;
+}

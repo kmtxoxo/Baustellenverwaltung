@@ -1,0 +1,17 @@
+.time-form-container {
+    display: flex;
+}
+.time-form-container > mat-form-field:nth-child(odd){
+    margin-right: 16px;
+}
+mat-form-field{
+    display: block;
+    width: 100%;
+}
+
+// Phone
+@media (max-width: 600px) {
+    .time-form-container{
+        flex-direction: column;
+    }
+}

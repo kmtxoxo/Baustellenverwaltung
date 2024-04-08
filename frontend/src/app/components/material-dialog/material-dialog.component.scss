@@ -1,0 +1,21 @@
+mat-form-field{
+    display: block;
+    width: 100%;
+}
+.unit{
+    margin-left: 16px;
+    width: 30%;
+}
+.material-row{
+    display: flex;
+}
+.remove-icon{
+    margin: 0;
+    color:red;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center
+}

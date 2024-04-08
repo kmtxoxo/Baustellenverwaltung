@@ -1,0 +1,75 @@
+<div class="error-container" *ngIf="!loading && !loadingFailed" class="profileinstellungen">
+    <h3>{{'routes.settings' | translate}}</h3>
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-label>{{'settings.name' | translate}}</mat-label>
+        <input formControlName="name" required matInput />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>{{'settings.phone' | translate}}</mat-label>
+        <input matInput formControlName="phone" type="number"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{'settings.address' | translate}}</mat-label>
+        <input matInput formControlName="address" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{'settings.zip' | translate}}</mat-label>
+        <input matInput formControlName="zip" type="number"/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{'settings.city' | translate}}</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>{{'settings.email' | translate}}</mat-label>
+        <input formControlName="email" matInput />
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>{{'settings.language' | translate}}</mat-label>
+        <mat-select formControlName="language" [value]="form.value.language">
+          <mat-option *ngFor="let language of languages" [value]="language">
+            {{ 'etc.languages.'+language | translate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div style="display: flex; justify-content: flex-end;">
+        <button
+          btn
+          mat-raised-button
+          [disabled]="!form.valid"
+          color="primary"
+          (click)="saveUserSettings()"
+        >
+        {{'settings.update_profile' | translate}}
+        </button>
+      </div>
+    </form>
+    <h3>{{'settings.change_password' | translate}}</h3>
+    <form [formGroup]="formPw">
+      <mat-form-field>
+        <mat-label>{{'settings.new_password' | translate}}</mat-label>
+        <input [type]="'password'" formControlName="newPassword" matInput />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{'settings.password_confirmation' | translate}}</mat-label>
+        <input [type]="'password'" formControlName="confirmation" matInput />
+      </mat-form-field>
+    </form>
+  
+    <div style="display: flex; justify-content: flex-end;">
+      <button [disabled]="!validPassword || !formPw.valid" btn mat-raised-button color="primary" (click)="changePassword()">
+        {{'settings.update_password' | translate}}
+      </button>
+    </div>
+  </div>
+  <div class="spinner-container" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+<div *ngIf="!loading && loadingFailed">{{ 'etc.loading_error' | translate }}</div>

@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>
+  {{
+    editBaustelle
+      ? ("construction.dialog.edit_construction" | translate)
+      : ("construction.dialog.add_construction" | translate)
+  }}
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>{{ "construction.table.name" | translate }}</mat-label>
+      <input maxlength="40" formControlName="name" required matInput />
+    </mat-form-field>
+    <div class="kontaktdetails-headline">
+      <mat-label>{{ "construction.dialog.contact" | translate }}</mat-label>
+    </div>
+    <mat-form-field>
+      <mat-label>{{
+        "construction.dialog.customername" | translate
+      }}</mat-label>
+      <input maxlength="40" matInput formControlName="customerName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ "construction.dialog.email" | translate }}</mat-label>
+      <input maxlength="50" formControlName="email" matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ "construction.dialog.adress" | translate }}</mat-label>
+      <input maxlength="50" formControlName="address" matInput />
+    </mat-form-field>
+
+    <div class="city-info">
+      <mat-form-field class="city">
+        <mat-label>{{ "construction.dialog.city" | translate }}</mat-label>
+        <input  maxlength="40" formControlName="city" matInput />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "construction.dialog.zip" | translate }}</mat-label>
+        <input type="number" formControlName="zip" matInput />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>{{
+        "construction.dialog.phone_number" | translate
+      }}</mat-label>
+      <input type="number" formControlName="phone" matInput />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: flex-end">
+  <div>
+    <button mat-button (click)="onCancelClicked()">
+      {{ "etc.form_actions.cancel" | translate }}
+    </button>
+    <button
+      *ngIf="!editBaustelle"
+      [disabled]="!form.valid"
+      mat-raised-button
+      color="primary"
+      (click)="onCreateClicked()"
+    >
+      {{ "etc.form_actions.create" | translate }}
+    </button>
+    <button
+      *ngIf="editBaustelle"
+      [disabled]="!form.valid"
+      mat-raised-button
+      color="primary"
+      (click)="onSaveChangeClicked()"
+    >
+      {{ "etc.form_actions.save" | translate }}
+    </button>
+  </div>
+</div>

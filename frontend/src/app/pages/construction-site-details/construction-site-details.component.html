@@ -1,0 +1,39 @@
+<div class="spinner-container" *ngIf="loading === true">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="tab-container" *ngIf="constructionSite && loading === false">
+    <mat-tab-group [animationDuration]="0" mat-stretch-tabs id="tab-group">
+      <mat-tab label="Details">
+        <div style="padding: 16px;"><app-details-tab
+          style="height: 100%;"
+          [constructionSite]="constructionSite"
+        ></app-details-tab> </div>
+      </mat-tab>
+      <mat-tab [disabled]="!(permissions | async)?.permissions.task.read" label="Aufgaben">
+        <div style="padding: 16px;height: calc(100% - 32px);"><app-task-tab
+          [worker]="constructionSite.users"
+          [constructionSiteId]="constructionSite.id"
+        ></app-task-tab>
+      </div>
+      </mat-tab>
+      <mat-tab [disabled]="!(permissions | async)?.permissions.worktime.read" label="Arbeitszeiten"
+        ><div style="padding: 16px;"><app-worktime-tab
+          [constructionSiteId]="constructionSite.id"
+        ></app-worktime-tab>
+      </div>
+      </mat-tab>
+      <mat-tab [disabled]="!(permissions | async)?.permissions.material.read" label="Material">
+        <app-material-tab [constructionSiteId]="constructionSite.id"></app-material-tab>
+      </mat-tab>
+      <mat-tab label="{{'construction.tabs.gallery' | translate}}"><app-gallery-tab [constructionSiteId]="constructionSite.id"></app-gallery-tab></mat-tab>
+      <mat-tab [disabled]="!(permissions | async)?.permissions.note.read">
+        <ng-template mat-tab-label>
+          <span [matBadgeHidden]="notificationCount == 0" [matBadge]="notificationCount > 9?'+'+notificationCount:notificationCount" matBadgeOverlap="false">{{'construction.tabs.notes' | translate}}</span>
+        </ng-template>
+        <app-note-tab [constructionSiteId]="constructionSite.id"></app-note-tab></mat-tab>
+    </mat-tab-group>
+</div>
+
+<div class="spinner-container" *ngIf="!constructionSite && loading === false">
+  <app-not-found></app-not-found>
+</div>

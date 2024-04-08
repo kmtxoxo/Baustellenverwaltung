@@ -1,0 +1,93 @@
+<div class="ssss">
+    <h3 id="dashboard-headline">{{'recently.overview' | translate}}</h3>
+  <div class="kacheln">
+  
+    <mat-card class="dashboard-card">
+      <div [ngClass]="{'dashboard-smartphone-tile-container': (layout$ | async).layout === 'phone'}">
+      <div class="dashboard-card-content">
+        <mat-icon class="info-icon">build</mat-icon>
+        <div class="info-container">
+          <span class="info-value">{{openConstructionSites}}</span>
+          <span *ngIf="(layout$ | async).layout !== 'phone'" class="info-titel">{{'recently.open_projects' | translate}}</span>
+        </div>
+      </div>
+      <span *ngIf="(layout$ | async).layout === 'phone'" class="info-titel">{{'recently.open_projects' | translate}}</span>
+      </div>
+      <div class="colored-bottom"></div>
+    </mat-card>
+  
+    <mat-card class="dashboard-card">
+      <div [ngClass]="{'dashboard-smartphone-tile-container': (layout$ | async).layout === 'phone'}">
+      <div class="dashboard-card-content">
+        <mat-icon class="info-icon">check</mat-icon>
+        <div class="info-container">
+          <span class="info-value">{{completedConstructionSites}}</span>
+          <span *ngIf="(layout$ | async).layout !== 'phone'" class="info-titel">{{'recently.completed_projects' | translate}}</span>
+        </div>
+      </div>
+      <span *ngIf="(layout$ | async).layout === 'phone'" class="info-titel">{{'recently.completed_projects' | translate}}</span>
+    </div>
+      <div class="colored-bottom"></div>
+    </mat-card>
+  
+  
+    <mat-card class="dashboard-card">
+      <div [ngClass]="{'dashboard-smartphone-tile-container': (layout$ | async).layout === 'phone'}">
+      <div class="dashboard-card-content">
+        <mat-icon class="info-icon">access_time</mat-icon>
+        <div class="info-container">
+          <span class="info-value">{{workedHours}} h {{workedMinutes?workedMinutes +' min':''}}</span>
+          <span *ngIf="(layout$ | async).layout !== 'phone'" class="info-titel">{{'recently.work_hours' | translate}}</span>
+        </div>
+      </div>
+      <span *ngIf="(layout$ | async).layout === 'phone'" class="info-titel">{{'recently.work_hours' | translate}}</span>
+      </div>
+      <div class="colored-bottom"></div>
+    </mat-card>
+  
+    <mat-card class="dashboard-card">
+      <div [ngClass]="{'dashboard-smartphone-tile-container': (layout$ | async).layout === 'phone'}">
+      <div class="dashboard-card-content">
+        <mat-icon class="info-icon">toc</mat-icon>
+        <div class="info-container">
+          <span class="info-value">{{openTasks}}</span>
+          <span *ngIf="(layout$ | async).layout !== 'phone' " class="info-titel">{{'recently.open_tasks' | translate}}</span>
+        </div>
+      </div>
+      <span *ngIf="(layout$ | async).layout === 'phone'" class="info-titel">{{'recently.open_tasks' | translate}}</span>
+      </div>
+      <div class="colored-bottom"></div>
+    </mat-card>
+  
+  </div>
+  <div>
+    <h3 class="activity-headline">{{'recently.activity' | translate}}</h3>
+    <div *ngIf="!loadingNotifications" class="ereignis-container">
+      <div class="card-container" *ngFor="let ereignis of notifications">
+        <div>
+          <mat-icon
+            class="round-icon"
+            [ngClass]="{
+              'construction-icon': ereignis.type === 'build',
+              'person-icon': ereignis.type === 'person_add',
+              'time-booked-icon': ereignis.type === 'access_time',
+              'task-completed-icon': ereignis.type === 'check_box'
+            }"
+            >{{ ereignis.type }}</mat-icon
+          >
+        </div>
+        <mat-card class="ereignis-card" [ngClass]="{'clickable':ereignis?.constructionSiteId}" [routerLink]="ereignis?.constructionSiteId?'/constructionSites/' + ereignis.constructionSiteId:[]"
+          ><span class="ereignis-text">{{ currentLanguage === 'en' ? ereignis.text.en : ereignis.text.de }}</span>
+          <span class="ereignis-timestamp">{{
+            ereignis.timestamp | timestamp
+          }}</span></mat-card
+        >
+      </div>
+      <div *ngIf="notifications?.length === 0 && !loadingFailed">{{ 'recently.no_activity' | translate }}</div>
+      <div *ngIf="loadingFailed">{{ 'etc.loading_error' | translate }}</div>
+    </div>
+    <div class="spinner-container" *ngIf="loadingNotifications">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,29 @@
+.header {
+    padding: 10px 20px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gainsboro;
+  }
+  .route{
+    font-size: 1rem;
+  }
+  .right-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  #header-logo,
+  #header-logo:active,
+  #header-logo:focus {
+    max-width: 113px;
+    flex: 1;
+    outline: none;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  

@@ -1,0 +1,90 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+$mat-custom-blue: (
+  50: #e4e6ec,
+  100: #bcc2cf,
+  200: #9099af,
+  300: #64708e,
+  400: #425176,
+  500: #21325e,
+  600: #1d2d56,
+  700: #18264c,
+  800: #141f42,
+  900: #0b1331,
+  A100: #6d85ff,
+  A200: #3a5bff,
+  A400: #0730ff,
+  A700: #0027ec,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white
+  )
+);
+$mat-custom-deep-red: (
+  50: #fce4e3,
+  100: #f6bcb8,
+  200: #f19089,
+  300: #eb6359,
+  400: #e64136,
+  500: #e22012,
+  600: #df1c10,
+  700: #da180d,
+  800: #d6130a,
+  900: #cf0b05,
+  A100: #fff8f7,
+  A200: #ffc5c4,
+  A400: #ff9391,
+  A700: #ff7a78,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: red,
+    600: red,
+    700: red,
+    800: red,
+    900: red,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: red
+  )
+);
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$baustellenverwaltung-frontend-primary: mat-palette($mat-custom-blue);
+$baustellenverwaltung-frontend-accent: mat-palette($mat-red, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$baustellenverwaltung-frontend-warn: mat-palette($mat-custom-deep-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$baustellenverwaltung-frontend-theme: mat-light-theme($baustellenverwaltung-frontend-primary, $baustellenverwaltung-frontend-accent, $baustellenverwaltung-frontend-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($baustellenverwaltung-frontend-theme);

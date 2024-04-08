@@ -1,0 +1,235 @@
+<div 
+  [ngClass]="{
+    'task-list-container': viewMode === 'list' || viewMode === 'tiles',
+    'hidden': loading && !loadingFailed
+  }"
+>
+  <div class="task-settings">
+    <div>
+      <div class="settings-button">
+        <button
+          (click)="filterMyTasks(false)"
+          [class.mat-raised-button]="filterObj.user === ''"
+          [ngClass]="{ 'color-primary': filterObj.user === '' }"
+          mat-button
+        >
+          {{ "tasks.all_tasks" | translate }}
+        </button>
+        <button
+          (click)="filterMyTasks(true)"
+          [class.mat-raised-button]="filterObj.user !== ''"
+          [ngClass]="{ 'color-primary': filterObj.user !== '' }"
+          mat-button
+        >
+          {{ "tasks.my_tasks" | translate }}
+        </button>
+      </div>
+      <div class="settings-button">
+        <button
+          (click)="applyFilter('')"
+          [class.mat-raised-button]="filterObj.status === ''"
+          [ngClass]="{ 'color-primary': filterObj.status === '' }"
+          mat-button
+        >
+          {{ "tasks.status.all" | translate }}
+        </button>
+        <button
+          (click)="applyFilter('open')"
+          [class.mat-raised-button]="filterObj.status === 'open'"
+          [ngClass]="{ 'color-primary': filterObj.status === 'open' }"
+          mat-button
+        >
+          {{ "tasks.status.open" | translate }}
+        </button>
+        <button
+          (click)="applyFilter('completed')"
+          [class.mat-raised-button]="filterObj.status === 'completed'"
+          [ngClass]="{ 'color-primary': filterObj.status === 'completed' }"
+          mat-button
+        >
+          {{ "tasks.status.completed" | translate }}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="(layout$ | async).layout !== 'phone' && (layout$ | async).layout !== 'phone-landscape'" class="view-mode-container">
+      <button [ngClass]="{ 'selected': viewMode === 'tiles' }" (click)="viewMode = 'tiles'" mat-button>
+        <mat-icon>view_module</mat-icon>
+      </button>
+      <button [ngClass]="{ 'selected': viewMode === 'list' }" (click)="viewMode = 'list'" mat-button>
+        <mat-icon>view_list</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div [ngClass]="{'hidden': viewMode === 'tiles'}" class="table-container">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "tasks.title" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+      </ng-container>
+
+      <!-- Text Column -->
+      <ng-container matColumnDef="text">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "tasks.text" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let task">{{ task.text }}</td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "tasks.status.status" | translate }}
+        </th>
+        <td
+          [ngClass]="{ 'green-border': task.status === 'completed' }"
+          mat-cell
+          *matCellDef="let task"
+        >
+          {{ "tasks.status." + task.status | translate }}
+        </td>
+      </ng-container>
+
+      <!-- Priority Column -->
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "tasks.priority" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let task">
+          {{ "tasks.priorities." + task.priority | translate }}
+        </td>
+      </ng-container>
+
+      <!-- Created At Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "tasks.created_at" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let task">
+          {{ task.createdAt | date }}
+        </td>
+      </ng-container>
+
+      <!-- modifiedAt Column -->
+      <ng-container matColumnDef="modifiedAt">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "tasks.modified_at" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let task">
+          {{ task.modifiedAt | date }}
+        </td>
+      </ng-container>
+
+      <!-- assignedTo Column -->
+      <ng-container matColumnDef="assignedTo">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "tasks.assigned_to" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let task">
+          {{ task.assignedTo.user }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        (click)="addTask(row)"
+        class="clickable"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+
+    <div style="flex-grow: 1; background-color: white">
+      <div class="no-content-container" *ngIf="!loading && !loadingFailed && tasks?.length == 0 ">
+        {{ "tasks.no_tasks" | translate }}
+      </div>
+    </div>
+    <mat-paginator
+      #pagination
+      class="pagination"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
+  <div class="outter-card-container" [ngClass]="{'hidden': viewMode === 'list'}">
+    <div class="no-content-container" *ngIf="!loading && !loadingFailed && tasks?.length == 0 ">
+      {{ "tasks.no_tasks" | translate }}
+    </div>
+  <div class="card-container">
+    <mat-card
+      *ngFor="let task of dataSource?.filteredData | slice: (pageIndex-1) * pageSize : pageIndex * pageSize"
+      (click)="addTask(task)"
+      class="task-card clickable"
+      [ngClass]="{
+        'task-completed': task.status === 'completed'
+      }"
+    >
+      <mat-card-title class="task-card-header">
+        <div class="flex-row-container">
+          <mat-icon
+            [matTooltip]="task.assignedTo.user"
+            matTooltipPosition="after"
+            *ngIf="task.assignedTo?.user"
+            >account_circle</mat-icon
+          >
+          {{ task.title }}
+        </div>
+        <div
+          [ngSwitch]="task.priority"
+          class="flex-row-container priority-container"
+        >
+          <span>Priority:</span>
+
+          <mat-icon *ngSwitchCase="'high'" class="red">arrow_upward</mat-icon>
+
+          <mat-icon *ngSwitchCase="'normal'" class="orange"
+            >drag_handle</mat-icon
+          >
+
+          <mat-icon *ngSwitchCase="'low'" class="grey">arrow_downward</mat-icon>
+        </div>
+      </mat-card-title>
+
+      <mat-card-content>
+        <p class="task-content">
+          {{ task.text }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <span class="task-date">{{ task.createdAt | date }}</span>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+    <div class="spacer"></div>
+    <div
+    class="card-pagination"
+  >
+  <span>{{(pageIndex-1)*pageSize + ' - ' + (pageIndex*pageSize) + ' of ' + dataSource?.filteredData?.length}}</span>
+  <button mat-icon-button [disabled]="pageIndex===1" (click)="pageIndex = 1" aria-label="Example icon button with a vertical three dot icon">
+    <mat-icon>skip_previous</mat-icon>
+  </button>
+  <button mat-icon-button [disabled]="pageIndex===1" (click)="pageIndex = pageIndex -1" aria-label="Example icon button with a vertical three dot icon">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <button mat-icon-button [disabled]="pageIndex*pageSize >= dataSource?.filteredData?.length" (click)="pageIndex = pageIndex +1" aria-label="Example icon button with a vertical three dot icon">
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+  <button mat-icon-button (click)="goToLastPage()" [disabled]="pageIndex*pageSize >= dataSource?.filteredData?.length" aria-label="Example icon button with a vertical three dot icon">
+    <mat-icon>skip_next</mat-icon>
+  </button>
+</div>
+</div>
+</div>
+<div *ngIf="!loading && !loadingFailed && (permissions | async)?.permissions.task.write" class="add-button-container">
+  <button mat-fab color="primary" (click)="addTask()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div class="error-container" *ngIf="!loading && loadingFailed">{{ 'etc.loading_error' | translate }}</div>
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>

@@ -1,0 +1,56 @@
+:host {
+    position: absolute;
+    width: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 8px;
+  }
+
+.gallery-item{
+    border-radius: 2px;
+    height: 250px;
+    width: calc(25% - 12px);
+    margin: 3px 6px;
+    object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
+}
+.gallery-item:hover{
+    opacity: 0.8;
+}
+
+.add-button-container {
+    bottom: 64px;
+    left: 50%;
+    z-index: 100;
+    position: fixed;
+  }
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width:  768px) { 
+    .gallery-item{
+        height: 300px;
+        width: calc(100% - 12px);
+        background-color: yellow;
+    }
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    .gallery-item{
+        height: 250px;
+        width: calc(25% - 12px);
+    }
+ }
+
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    
+    .gallery-item{
+        height: 350px;
+    }
+ }
+

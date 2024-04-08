@@ -1,0 +1,21 @@
+.kontaktdetails-headline{
+    margin: 8px 0;
+}
+mat-form-field{
+    display: block;
+    width: 100%;
+}
+.city{
+    margin-right: 16px;
+}
+.city-info{
+    display: flex;
+}
+
+// Phone
+@media (max-width: 600px) {
+    .city-info{
+        display: flex;
+        flex-direction: column;
+    }
+}

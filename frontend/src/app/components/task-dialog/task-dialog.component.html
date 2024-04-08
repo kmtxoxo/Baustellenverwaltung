@@ -1,0 +1,103 @@
+<h1 mat-dialog-title>
+  {{
+    editTask
+      ? ("tasks.dialog.edit_task" | translate)
+      : ("tasks.dialog.add_task" | translate)
+  }}
+</h1>
+<div mat-dialog-content>
+  <form *ngIf="!loading && form" [formGroup]="form">
+    <mat-form-field>
+      <mat-label>{{ "tasks.title" | translate }}</mat-label>
+      <input maxlength="60" required matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ "tasks.text" | translate }}...</mat-label>
+      <textarea
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="10"
+        formControlName="text"
+        matInput
+      ></textarea>
+    </mat-form-field>
+
+    <div>
+      <mat-form-field formGroupName="assignedTo" class="example-full-width">
+        <input
+          type="text"
+          formControlName="user"
+          [placeholder]="'tasks.assign_to' | translate"
+          matInput
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let user of filteredOptions | async"
+            [value]="user.name"
+          >
+            {{ user.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "tasks.priority" | translate }}</mat-label>
+        <mat-select
+          formControlName="priority"
+          [value]="form.value.priority ? form.value.priority : 'normal'"
+        >
+          <mat-option *ngFor="let priority of priorities" [value]="priority">
+            {{ "tasks.priorities." + priority | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="slider-container">
+      <mat-label>{{ "tasks.status.status" | translate }}</mat-label>
+      <mat-slider
+        tickInterval="1"
+        min="0"
+        color="primary"
+        (change)="updateSliderValue($event.value)"
+        [value]="statusSlider"
+        max="2"
+      ></mat-slider>
+      <div class="labels">
+        <span>{{ "tasks.status.open" | translate }}</span>
+        <span class="middle">{{ "tasks.status.in_progress" | translate }}</span>
+        <span>{{ "tasks.status.completed" | translate }}</span>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: space-between">
+  <div>
+    <button *ngIf="editTask" mat-button (click)="onDeleteClicked()">
+      {{ "etc.form_actions.delete" | translate }}
+    </button>
+  </div>
+  <div>
+    <button mat-button (click)="onCancelClicked()">
+      {{ "etc.form_actions.cancel" | translate }}
+    </button>
+    <button
+      *ngIf="!editTask"
+      [disabled]="!form.valid"
+      mat-raised-button
+      color="primary"
+      (click)="onCreateClicked()"
+    >
+      {{ "etc.form_actions.create" | translate }}
+    </button>
+    <button
+      *ngIf="editTask"
+      [disabled]="!form.valid"
+      mat-raised-button
+      color="primary"
+      (click)="onSaveChangeClicked()"
+    >
+      {{ "etc.form_actions.save" | translate }}
+    </button>
+  </div>
+</div>

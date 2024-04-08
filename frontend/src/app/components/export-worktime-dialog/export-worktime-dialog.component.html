@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>
+    {{ 'work_hours.worktime_export_headline' | translate }}
+  </h1>
+  <div mat-dialog-content>
+    <p>{{ 'work_hours.worktime_export_info' | translate }}</p>
+    <div *ngIf="form">     
+      <form [formGroup]="form">
+        <mat-form-field>
+        <mat-label>{{ "etc.from" | translate }}</mat-label>
+        <input
+          matInput
+          (click)="picker1.open()"
+          [matDatepicker]="picker1"
+          formControlName="start"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "etc.to" | translate }}</mat-label>
+        <input
+          matInput
+          (click)="picker2.open()"
+          [matDatepicker]="picker2"
+          formControlName="end"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </form>     
+    </div>
+  </div>
+  <div mat-dialog-actions style="display: flex; justify-content: space-between">
+    <button mat-raised-button color="primary"  [mat-dialog-close]="form.value">
+      {{ "etc.form_actions.download" | translate }}
+    </button>
+    <button mat-button mat-dialog-close>
+      {{ "etc.form_actions.cancel" | translate }}
+    </button>
+  </div>
+  

@@ -1,0 +1,61 @@
+
+@import "../../../theme.scss";
+$primary: map-get($baustellenverwaltung-frontend-theme, primary);
+
+table {
+  width: 100%;
+}
+
+.table-settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.flex-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-column-action {
+  width: 50px;
+  text-align: center;
+}
+.table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.color-primary {
+  background-color: mat-color($primary);
+  color: white;
+}
+
+.green-border{
+  border-left: 12px solid green;
+  padding-left: 12px !important;
+}
+
+
+// Phone
+@media (max-width: 600px) {
+  th.mat-header-cell:last-of-type{
+    width: 33%;
+  }
+  .table-settings{
+    flex-direction: column;
+  }
+  .square-add-construction-button{
+    margin-top: 16px;
+  }
+}

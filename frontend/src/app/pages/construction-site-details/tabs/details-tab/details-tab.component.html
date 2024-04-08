@@ -1,0 +1,158 @@
+<div class="detail-container">
+  <mat-card *ngIf="form" class="detail-card">
+    <div class="mat-card-header">
+      <span class="mat-card-header-titel">
+        {{ "construction.construction_site_information" | translate }}
+      </span>
+      <button mat-icon-button
+        [disabled]="!(permissions | async)?.permissions.constructionSite.write"
+        (click)="editConstructionSite()"
+        aria-label="edit Construction Site info">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+
+      <table style="width: 100%">
+        <tr>
+          <td>{{ "construction.table.name" | translate }}</td>
+          <td>{{ constructionSite.name }}</td>
+        </tr>
+        <tr>
+          <th>{{ "construction.dialog.contact" | translate }}</th>
+        </tr>
+        <tr>
+          <td>{{ "construction.dialog.customername" | translate }}</td>
+          <td>{{ constructionSite.contact.name }}</td>
+        </tr>
+        <tr>
+          <td>{{ "construction.dialog.email" | translate }}</td>
+          <td>{{ constructionSite.contact.email }}</td>
+        </tr>
+        <tr>
+          <td>{{ "construction.dialog.city" | translate }}</td>
+          <td>
+            {{ constructionSite.contact.city
+            }}{{
+              constructionSite.contact.zip
+                ? ", " + constructionSite.contact.zip
+                : ""
+            }}
+          </td>
+        </tr>
+        <tr>
+          <td>{{ "construction.dialog.adress" | translate }}</td>
+          <td>{{ constructionSite.contact.address }}</td>
+        </tr>
+        <tr>
+          <td>{{ "construction.dialog.phone_number" | translate }}</td>
+          <td>{{ constructionSite.contact.phone }}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="options-card">
+    <div class="mat-card-header">
+      <span class="mat-card-header-titel">
+        {{ "construction.more_options" | translate }}
+      </span>
+    </div>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <table style="width: 100%">
+        <tr>
+          <td>{{ "construction.worktime" | translate }}</td>
+          <td>{{workedHours}} h {{workedMinutes?workedMinutes +' min':''}}</td>
+        </tr>
+        <tr>
+          <td>{{ "construction.open_tasks" | translate }}</td>
+          <td>{{ openTasks }}</td>
+        </tr>
+        <tr>
+          <td>{{ "construction.completed_tasks" | translate }}</td>
+          <td>{{ completedTasks }}</td>
+        </tr>
+      </table>
+      <mat-divider></mat-divider>
+      <div class="option-container">
+        <button [disabled]="!(permissions | async)?.permissions.constructionSite.write" (click)="downloadCSV()" mat-button>
+          <span class="option-button"
+            ><mat-icon id="download-icon">get_app</mat-icon
+            >{{ "construction.export_construction_site" | translate }}</span
+          >
+        </button>
+        <mat-slide-toggle
+          [disabled]="!(permissions | async)?.permissions.constructionSite.write"
+          (change)="changeConstructionSiteStatus($event)"
+          checked="{{ constructionSite.status === 'completed' ? true : false }}"
+          class="slider"
+          color="primary"
+          >{{
+            constructionSite.status === "completed"
+              ? ("construction.status.completed" | translate)
+              : ("construction.status.open" | translate)
+          }}</mat-slide-toggle
+        >
+      </div>
+      <span class="info-text"
+        >{{ "construction.delete_description" | translate }}
+      </span>
+      <div class="delete-button-container">
+        <button [disabled]="!(permissions | async)?.permissions.constructionSite.write" (click)="deleteConstructionSite()" mat-raised-button color="warn">
+          <span class="delete-buttton">
+            <mat-icon>delete</mat-icon
+            >{{ "construction.dialog.delete_construction" | translate }}
+          </span>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="worker-card">
+    <div class="mat-card-header">
+      <span class="mat-card-header-titel">
+        {{ "construction.workers" | translate }}
+      </span>
+    </div>
+    <mat-card-content class="flex-container">
+      <mat-divider></mat-divider>
+      <form class="invite-container">
+        <mat-form-field class="example-full-width">
+          <input type="text"
+                [placeholder]="'construction.add_worker' | translate"
+                matInput
+                [readonly]="!(permissions | async)?.permissions.constructionSite.write"
+                [formControl]="inviteForm"
+                [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText">
+            <mat-option *ngFor="let user of filteredOptions | async" [value]="user">
+              {{user.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div class="option-container">
+          <button mat-icon-button
+          id="add-worker-icon"
+          [disabled]="!(permissions | async)?.permissions.constructionSite.write"
+          (click)="addWorker()">
+          <mat-icon>add</mat-icon>
+        </button>
+        </div>
+      </form>
+    
+      <div class="worker-container">
+        <div class="worker-item" *ngFor="let worker of this.constructionSite.users">
+          <span>{{ worker.name }}</span>
+          <button mat-icon-button
+            [disabled]="!(permissions | async)?.permissions.constructionSite.write"
+            (click)="removeWorker(worker)">
+            <mat-icon class="remove-worker-icon">remove</mat-icon>
+          </button>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

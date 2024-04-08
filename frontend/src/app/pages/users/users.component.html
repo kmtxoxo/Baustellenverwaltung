@@ -1,0 +1,117 @@
+<div class="flex-container" *ngIf="!loading && !loadingFailed">
+  <div *ngIf="(permissions | async)?.permissions.users.write" class="table-settings">
+    <div>
+      <button (click)="addUser()" mat-raised-button color="primary">
+        <mat-icon>add</mat-icon> {{ "employee.add_employee" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "employee.table.name" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "employee.table.role" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "employee.table.status" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">
+          {{ "employee.status." + user.status | translate }}
+        </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "employee.table.email" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+
+      <!-- Phone Column -->
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "employee.table.phone_number" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.phone ? user.phone : "---" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address"
+        >Am Fürstenbahnhof 2, 64293 Darmstadt
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "employee.table.address" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.address }}{{ user.city || user.zip ? "," : "" }}
+          {{ user.zip }} {{ user.city }}
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "employee.table.action" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">
+          <button mat-icon-button 
+            (click)="openWorktimeDialog(user); $event.stopPropagation()">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        (click)="addUser(row)"
+        class="clickable"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+
+    <div style="flex-grow: 1; background-color: white"></div>
+    <mat-paginator
+      #paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="error-container" *ngIf="!loading && loadingFailed">{{ 'etc.loading_error' | translate }}</div>

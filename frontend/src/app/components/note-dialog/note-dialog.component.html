@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{editNotiz? ('notes.edit_note' | translate): ('notes.add_note' | translate)}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>{{'notes.title' | translate}}</mat-label>
+    <input maxlength="60" required matInput formControlName="title">
+  </mat-form-field>
+      <mat-form-field class="example-full-width">
+      <mat-label>{{'notes.message' | translate}}...</mat-label>
+      <textarea #message  cdkTextareaAutosize
+      cdkAutosizeMinRows="5"
+      cdkAutosizeMaxRows="10" formControlName="text"  minlength="3" maxlength="1200" required matInput></textarea>
+      <mat-hint align="end">{{message.value.length}} / 1200</mat-hint>
+    </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions style="display: flex;justify-content: space-between;">
+  <div> <button *ngIf="editNotiz" mat-button (click)="onDeleteClicked()">{{'etc.form_actions.delete' | translate}}</button></div>
+  <div>
+  <button mat-button (click)="onCancelClicked()">{{'etc.form_actions.cancel' | translate}}</button>
+  <button *ngIf="!editNotiz" [disabled]="!form.valid" mat-raised-button color="primary" (click)="onCreateClicked()">{{'etc.form_actions.create' | translate}}</button>
+  <button *ngIf="editNotiz" [disabled]="!form.valid" mat-raised-button color="primary" (click)="onSaveChangeClicked()">{{'etc.form_actions.save' | translate}}</button>
+</div>
+</div>

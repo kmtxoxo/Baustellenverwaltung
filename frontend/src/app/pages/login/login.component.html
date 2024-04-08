@@ -1,0 +1,181 @@
+<mat-card class="login-container">
+  <div class="login-head">
+    <img src="assets/logo-icon.png" /><span id="company-name">Keebo</span>
+  </div>
+  <mat-card-content class="content">
+    <form *ngIf="!registerUser && !resetPassword && !isResetIdAvailable">
+      <mat-form-field>
+        <mat-label>{{ "etc.email" | translate }}</mat-label>
+        <input
+          [pattern]="emailRegex"
+          [(ngModel)]="email"
+          name="name"
+          matInput
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ "etc.password" | translate }}</mat-label>
+        <input
+          [(ngModel)]="password"
+          name="password"
+          matInput
+          [type]="hidePw ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hidePw = !hidePw"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePw"
+        >
+          <mat-icon>{{ hidePw ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <div *ngIf="loginError">
+        <span class="error">{{ "etc.login_error" | translate }}</span>
+      </div>
+      <div class="login-checkbox-container">
+        <mat-checkbox (change)="stayLoggedInChange($event)" color="primary">{{
+          "etc.stay_signed_in" | translate
+        }}</mat-checkbox>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button color="primary" (click)="login()">
+          {{ "etc.login" | translate }}
+        </button>
+      </div>
+      <div class="password-forgotten">
+        <span (click)="resetPassword = true" class="password-forgotten-text">{{
+          "etc.password_forgotten" | translate
+        }}</span>
+      </div>
+    </form>
+    <form *ngIf="registerUser" class="registerForm" [formGroup]="form">
+      <mat-form-field>
+        <mat-label>{{ "settings.name" | translate }}</mat-label>
+        <input formControlName="name" required matInput />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "etc.email" | translate }}</mat-label>
+        <input type="email" formControlName="email" matInput />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "etc.address" | translate }}</mat-label>
+        <input type="text" formControlName="address" matInput />
+      </mat-form-field>
+
+      <div class="city-container">
+        <mat-form-field>
+          <mat-label>{{ "etc.city" | translate }}</mat-label>
+          <input type="text" formControlName="city" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{ "etc.zip" | translate }}</mat-label>
+          <input type="number" formControlName="zip" matInput />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>{{ "etc.phone" | translate }}</mat-label>
+        <input type="text" formControlName="phone" matInput />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "settings.language" | translate }}</mat-label>
+        <mat-select formControlName="language" [value]="form.value.language">
+          <mat-option *ngFor="let language of languages" [value]="language">
+            {{ "etc.languages." + language | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "etc.password" | translate }}</mat-label>
+        <input type="password" formControlName="password" matInput />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>{{ "etc.confirmation_password" | translate }}</mat-label>
+        <input type="password" formControlName="confirmPassword" matInput />
+      </mat-form-field>
+      <div class="button-container">
+        <button
+          [disabled]="!form.valid"
+          mat-raised-button
+          color="primary"
+          (click)="register()"
+        >
+          {{ "etc.register" | translate }}
+        </button>
+      </div>
+    </form>
+    <form *ngIf="resetPassword">
+      <mat-form-field>
+        <mat-label>{{ "etc.email" | translate }}</mat-label>
+        <input type="email" [(ngModel)]="email" name="name" matInput />
+      </mat-form-field>
+
+      <div class="button-container">
+        <button
+          [disabled]="!email"
+          mat-raised-button
+          color="primary"
+          (click)="reset()"
+        >
+          {{ "etc.reset_password" | translate }}
+        </button>
+      </div>
+    </form>
+    <form *ngIf="isResetIdAvailable" [formGroup]="form">
+      <mat-form-field>
+        <mat-label>{{ "etc.password" | translate }}</mat-label>
+        <input
+          formControlName="password"
+          name="password"
+          matInput
+          [type]="hidePw ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hidePw = !hidePw"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hidePw"
+        >
+          <mat-icon>{{ hidePw ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button
+          [disabled]="!form.valid"
+          mat-raised-button
+          color="primary"
+          (click)="updatePasswort()"
+        >
+          {{ "etc.update_password" | translate }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+  <div class="spacer" style="flex-grow: 1"></div>
+  <div class="navigate-container">
+    <div
+      *ngIf="resetPassword || registerUser"
+      (click)="resetPassword = false; registerUser = false"
+      id="navigate-login"
+    >
+      <mat-icon>navigate_before</mat-icon> {{ "etc.login" | translate }}
+    </div>
+    <div
+      *ngIf="!registerUser && isVerificationIdAvailable"
+      (click)="registerUser = true"
+      id="navigate-create"
+    >
+      {{ "etc.register" | translate }}<mat-icon>navigate_next</mat-icon>
+    </div>
+  </div>
+</mat-card>
